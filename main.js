@@ -1,6 +1,6 @@
 const scoreSpan = document.querySelector("span#score-js");
 
-const score = window.localStorage.getItem("score");
+let score = window.localStorage.getItem("score");
 
 const movementsBg = document.querySelector("svg#movements-bg");
 
@@ -168,5 +168,10 @@ playAgainBtn.addEventListener("click", (e) => {
   winLose.classList.add("hide");
   resetMovements();
 });
+
+if (score === null) {
+  localStorage.setItem('score', '0')
+  score = localStorage.getItem('score')
+}
 
 scoreSpan.innerText = `${score}`;
