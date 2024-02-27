@@ -230,31 +230,137 @@ ul {
 }
 
 .content section .movement.hide {
-    display: none;
+    animation: Dissapear 150ms forwards;
 }
 
 .content section .movement.selected {
-    animation: MovementAnimation 3s forwards;
+    animation: AppearUser 500ms forwards;
+    transform: scale(1.2);
+    left: 3%;
+    top: 27%;
+}
+
+.content section .counter {
+  top: 10%;
+  left: 46%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+}
+
+.content section .counter.hide {
+  display: none;
+}
+
+.content section .counter span {
+  font-size: 3em;
 }
 
 .content section .movement.house-picked {
-    transform: scale(1.2);
     top: 27%;
     left: 60%;
+    animation: AppearHouse 500ms ease-in-out forwards;
+
 }
 
-@keyframes MovementAnimation {
-    50% {
-        top: 60%;
-        left: 60%;
-        transform: translate(-50%, -50%);
-    }
+@keyframes Dissapear {
+  0% {
+    opacity: 1;
+  }
 
-    100% {
-        transform: scale(1.2);
-        left: 3%;
-        top: 27%;
-    }
+  25% {
+    opacity: .75;
+  }
+
+  50% {
+    opacity: .5;
+  }
+
+  75% {
+    opacity: .25;
+  }
+
+  100% {
+    opacity: 0;
+    display: none;
+  }
+}
+
+@keyframes Appear {
+  0% {
+    opacity: 0;
+  }
+
+  25% {
+    opacity: .25;
+  }
+
+  50% {
+    opacity: .5;
+  }
+
+  75% {
+    opacity: .75;
+  }
+
+  100% {
+    opacity: 1;
+    display: block;
+  }
+}
+
+@keyframes AppearHouse {
+  0% {
+    transform: translateX(100px);
+    opacity: 0;
+  }
+
+  25% {
+    transform: translateX(75px);
+    opacity: .25;
+  }
+
+  50% {
+    transform: translateX(50px);
+    opacity: .5;
+  }
+
+  75% {
+    transform: translateX(25px);
+    opacity: .75;
+  }
+
+  100% {
+    transform: translateX(0) scale(1.2);
+    opacity: 1;
+    display: block;
+  }
+}
+
+@keyframes AppearUser {
+  0% {
+    transform: translateX(-100px);
+    opacity: 0;
+  }
+
+  25% {
+    transform: translateX(-75px);
+    opacity: .25;
+  }
+
+  50% {
+    transform: translateX(-50px);
+    opacity: .5;
+  }
+
+  75% {
+    transform: translateX(-25px);
+    opacity: .75;
+  }
+
+  100% {
+    transform: translateX(0) scale(1.2);
+    opacity: 1;
+  }
 }
 
 .content section .win-lose-message {
@@ -266,6 +372,7 @@ ul {
   display: flex;
   flex-direction: column;
   align-items: center;
+  animation: Appear 500ms ease forwards;
 }
 
 .content section .win-lose-message.hide {

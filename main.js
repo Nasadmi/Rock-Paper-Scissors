@@ -10,6 +10,8 @@ const winLose = document.querySelector('.win-lose-message')
 
 const playAgainBtn = document.querySelector('#continue')
 
+const counter = document.querySelector(".counter span")
+
 const movements = document.querySelectorAll(
   "main.content section.game div.movement"
 );
@@ -127,34 +129,43 @@ function manageMovement(e) {
       otherMove.classList.add("hide");
     }
   });
-  e.currentTarget.classList.toggle("selected");
   e.currentTarget.classList.remove("hide");
+  e.currentTarget.classList.add("selected");
   movementsBg.classList.add("hide");
   battleBg.classList.remove("hide");
+  counter.parentElement.classList.remove('hide');
 
   movements.forEach((move) => {
     move.removeEventListener("click", manageMovement);
   });
 
+  hideElements = document.querySelectorAll(
+    "main.content section.game div.movement.hide"
+  );
+
+  let element = hideElements[Math.floor(Math.random() * hideElements.length)]
+
+  let interval = setInterval(() => {
+    let numb = parseInt(counter.textContent)
+    counter.innerText = `${--numb}`
+  }, 1000)
+
   setTimeout(() => {
-    hideElements = document.querySelectorAll(
-      "main.content section.game div.movement.hide"
-    );
-
-    let element = hideElements[Math.floor(Math.random() * hideElements.length)]
-
-    element.classList.remove('hide')
-
+    clearInterval(interval)
+    element.classList.remove("hide");
     element.classList.add("house-picked");
-    setTimeout(() => {
-      if (game.compareResult() === true) {
-        document.querySelector('.win-lose-message h1').innerText = 'You Win'
-      } else {
-        document.querySelector('.win-lose-message h1').innerText = 'You Lose'
-      }
-      winLose.classList.remove('hide')
-    }, 500)
-  }, 3500);
+  }, 2600) 
+
+  setTimeout(() => {
+    if (game.compareResult() === true) {
+      document.querySelector('.win-lose-message h1').innerText = 'You Win'
+    } else {
+      document.querySelector('.win-lose-message h1').innerText = 'You Lose'
+    }
+    counter.parentElement.classList.add('hide')
+    counter.innerText = '3'
+    winLose.classList.remove('hide')
+  }, 2700)
 }
 
 movements.forEach((move) => {
