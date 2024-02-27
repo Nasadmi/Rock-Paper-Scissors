@@ -279,7 +279,7 @@ ul {
 }
 
 .content section .win-lose-message #continue {
-  top: 100%;
+  top: 70%;
   width: 100%;
   color: var(--score-text);
   padding: 20px;
