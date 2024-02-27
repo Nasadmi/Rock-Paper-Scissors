@@ -1,7 +1,5 @@
 const scoreSpan = document.querySelector("span#score-js");
 
-let score = window.localStorage.getItem("score");
-
 const movementsBg = document.querySelector("svg#movements-bg");
 
 const battleBg = document.querySelector("div#battle-bg");
@@ -32,14 +30,15 @@ const possibles = {
 }
 
 class Game {
-  score = score;
+  score = window.localStorage.getItem("score");
 
   constructor() {
     if (this.score === null) {
       window.localStorage.setItem("score", "0");
+      this.score = window.localStorage.getItem("score")
     }
 
-    this.score = parseInt(score);
+    this.score = parseInt(this.score);
   }
 
   boostScore() {
@@ -169,9 +168,6 @@ playAgainBtn.addEventListener("click", (e) => {
   resetMovements();
 });
 
-if (score === null) {
-  localStorage.setItem('score', '0')
-  score = localStorage.getItem('score')
-}
+const score = window.localStorage.getItem("score");
 
 scoreSpan.innerText = `${score}`;
